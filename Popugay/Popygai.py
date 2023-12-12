@@ -1,31 +1,18 @@
-import time
-import psutil
 import os
+import time
 
-# Директория для хранения логов
-logs_dir = 'logs'
-if not os.path.exists(logs_dir):
-    os.makedirs(logs_dir)
+log_dir = "logs"
 
-# Определение пути к файлу для записи логов
-log_filename = os.path.join(logs_dir, f'system_load_{int(time.time())}.txt')
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
 
-# Мониторим систему в течение 10 секунд
-monitoring_duration = 10  # секунды
-end_time = time.time() + monitoring_duration
+log_file = os.path.join(log_dir, "system_load.log")
 
-while time.time() < end_time:
-    # Получаем данные о загрузке системы
-    cpu_percent = psutil.cpu_percent()
-    memory_percent = psutil.virtual_memory().percent
+monitoring_interval = 10
 
-    # Записываем данные в файл логов
-    with open(log_filename, 'a') as log_file:
-        log_file.write(f'Timestamp: {time.ctime()}\n')
-        log_file.write(f'CPU Load: {cpu_percent}%\n')
-        log_file.write(f'Memory Usage: {memory_percent}%\n')
-        log_file.write('\n')  # Разделитель между записями
-
-    time.sleep(1)  # Пауза в 1 секунду между измерениями
-
-print(f'Мониторинг завершен. Результаты сохранены в файл: {log_filename}')
+while True:
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    cpu_load = os.getloadavg()[0]
+    with open(log_file, "a") as f:
+        f.write(f"{current_time}: CPU Load: {cpu_load}\n")
+    time.sleep(monitoring_interval)
