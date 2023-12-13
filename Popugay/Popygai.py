@@ -1,18 +1,25 @@
-import os
-import time
+output_text = """
+                                  _________
+   EH EH EH EH EH            _.-~~ ` ` ` ` ~~~--..._
+                          .-~ ` `-` `-` ` ` ` ' ' ' ~~--._
+     EH EH EH EH        ,~ ` ` `-`-` _`____` ' ' ' ' ' '  `.
+                   \  ,'`_` ` ` _.-~~ |~(8)~_=_-'-'~' ' ` ` \\
+                      \\._.,::,-'   , ' `==='  .\\ ' ' '-'-` ` \\
+   'TAS-TE A RIR? --   / ~--:` `.- .  ~  ~_ .  |' ' ' ' `-` ` \\
+                      |  `::':~--:_ - _-     - | ' ' ' ` '-' ` \\
+                      |   '  `:::::)-._  _~   -|' '-' `-` ' ` ` \\
+        O L A'   --   |       ::::;/::::-._ _ /  ' ' ' `-` `-` ` \\
+                      |       ::;'/:::::::::,'  ' ` ` `-` ` `-` ` \\
+                       \\       / |:::::::::' ' ' '-`-' ' ` `-` ` ` \\
+                  ,/    \\     |-'--------'  ' '-'-` ` ` ` `-` `-` ` `.
+       CANTA LA' /       `.   |     |;;;-' ' '-' ` ` `-`-` ` `-` ` `  `
+    UM 'CADINHO       /    `-. \\    /;' ' ' ' ` ` `-`-` '-` ` ` ` ` `
+                     /        `-:._  ' ' ' ' ` ` ` ` ` ` ` ` ` `
+                                            ' ' _ Seal _' '
+          FIU   FIU   FIU
+"""
 
-log_dir = "logs"
+output_file = "popygai.txt"
 
-if not os.path.exists(log_dir):
-    os.makedirs(log_dir)
-
-log_file = os.path.join(log_dir, "system_load.log")
-
-monitoring_interval = 10
-
-while True:
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
-    cpu_load = os.getloadavg()[0]
-    with open(log_file, "a") as f:
-        f.write(f"{current_time}: CPU Load: {cpu_load}\n")
-    time.sleep(monitoring_interval)
+with open(output_file, "w") as w:
+    w.write(output_text)
